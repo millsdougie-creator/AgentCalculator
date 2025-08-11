@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estate Agent Commission Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  </head>
+  <body class="calc-body">
+    <header class="calc-header">
+      <h1>Commission Calculator</h1>
+      <div class="user-info">
+        <span id="welcomeUser"></span>
+        <button id="logoutBtn" class="btn small-btn">Logout</button>
+      </div>
+    </header>
+    <main class="calc-main">
+      <!-- Left Panel: Data Entry -->
+      <section class="left-panel">
+        <!-- Deal Information -->
+        <div class="card glass">
+          <h3>Deal Information</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="purchasePrice">Purchase Price (R)</label>
+              <input
+                type="number"
+                id="purchasePrice"
+                value="2600000"
+                min="0"
+                step="0.01"
+              />
+            </div>
+            <div class="form-group">
+              <label for="grossCommission">Gross Commission Amount (R, Incl. VAT)</label>
+              <input
+                type="number"
+                id="grossCommission"
+                value="150000"
+                min="0"
+                step="0.01"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Listing Agents -->
+        <div class="card glass" id="listingSection">
+          <h3>Listing Agent(s)</h3>
+          <div id="listingAgents"></div>
+          <button class="btn add-btn" id="addListingAgent">+ Add Listing Agent</button>
+        </div>
+
+        <!-- Sole Mandate Agent -->
+        <div class="card glass" id="soleSection">
+          <h3>Sole Mandate Agent</h3>
+          <div id="soleAgents"></div>
+        </div>
+
+        <!-- Selling Agents -->
+        <div class="card glass" id="sellingSection">
+          <h3>Selling Agent(s)</h3>
+          <div id="sellingAgents"></div>
+          <button class="btn add-btn" id="addSellingAgent">+ Add Selling Agent</button>
+        </div>
+
+        <!-- Fees & Splits Configuration -->
+        <div class="card glass">
+          <h3>Fees &amp; Splits Configuration</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Remax SA Service Fee (R, Calculated)</label>
+              <input type="number" id="serviceFee" disabled value="0" />
+            </div>
+            <div class="form-group">
+              <label for="adminFee">Admin Fee (R)</label>
+              <input
+                type="number"
+                id="adminFee"
+                value="0"
+                min="0"
+                step="0.01"
+              />
+            </div>
+          </div>
+          <button id="recalcBtn" class="btn primary-btn full-width">Recalculate Commissions</button>
+          <div class="form-row" style="margin-top: 10px">
+            <!-- VAT Rate slider -->
+            <div class="range-group">
+              <label for="vatRate">
+                VAT Rate (%)
+                <span class="value-display" id="vatRateLabel">15</span>%
+              </label>
+              <input
+                type="range"
+                id="vatRate"
+                min="0"
+                max="100"
+                step="0.1"
+                value="15"
+              />
+            </div>
+            <div class="form-group">
+              <label>Total Configured Fees (Excl. VAT)</label>
+              <input type="number" id="totalFees" disabled value="0" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Right Panel: Results -->
+      <section class="right-panel">
+        <div class="card glass" id="dealBreakdownCard">
+          <h3>Overall Deal Breakdown</h3>
+          <div class="breakdown">
+            <div class="breakdown-row"><span>Purchase Price</span><span id="purchasePriceDisplay"></span></div>
+            <div class="breakdown-row"><span>Gross Commission (incl VAT)</span><span id="grossCommissionDisplay"></span></div>
+            <div class="breakdown-row"><span>VAT on Gross Commission</span><span id="vatOnGrossCommissionDisplay"></span></div>
+            <div class="breakdown-row"><span>Gross Commission (excl VAT)</span><span id="grossCommissionExclDisplay"></span></div>
+            <div class="breakdown-row"><span>Remax SA Service Fee (excl VAT)</span><span id="serviceFeeExclDisplay"></span></div>
+            <div class="breakdown-row"><span>VAT on Remax SA Service Fee</span><span id="serviceFeeVatDisplay"></span></div>
+            <div class="breakdown-row"><span>Total Remax SA Fees (incl VAT)</span><span id="serviceFeeInclDisplay"></span></div>
+            <div class="breakdown-row"><span>Admin Fee (to Office)</span><span id="adminFeeDisplay"></span></div>
+            <div class="breakdown-row"><span>Net Commission before Office Split (excl VAT)</span><span id="netBeforeSplitDisplay"></span></div>
+          </div>
+        </div>
+        <div class="card glass" id="keyTotalsCard">
+          <h3>Key Financial Totals</h3>
+          <div class="breakdown">
+            <div class="breakdown-row"><span>Net Commission before Office Split (All Agents)</span><span id="netBeforeSplitTotal"></span></div>
+            <div class="breakdown-row"><span>Total Office Share (from Agents)</span><span id="totalOfficeShareDisplay"></span></div>
+            <div class="breakdown-row"><span>Commission Payable to Office</span><span id="commissionPayableOfficeDisplay"></span></div>
+            <div class="breakdown-row"><span>Total VAT Collected (SARS)</span><span id="totalVatCollectedDisplay"></span></div>
+            <div class="breakdown-row"><span>Total VAT Payable (SARS)</span><span id="totalVatPayableDisplay"></span></div>
+            <div class="breakdown-row"><span>Total PAYE Payable (SARS)</span><span id="totalPayeDisplay"></span></div>
+            <div class="breakdown-row"><span>Total Net Commissions to Agents (Take Home)</span><span id="totalNetToAgentsDisplay"></span></div>
+          </div>
+        </div>
+        <div class="card glass" id="chartCard">
+          <h3>Overall Financial Distribution</h3>
+          <canvas id="distributionChart" width="300" height="300"></canvas>
+        </div>
+        <div class="card glass" id="agentSummaryCard">
+          <h3>Agent Commission Summary</h3>
+          <div class="agent-summary" id="agentSummary"></div>
+        </div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

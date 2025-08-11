@@ -1,0 +1,409 @@
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Glassmorphism helpers */
+.glass {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 20px;
+  color: #1a1a1a;
+}
+
+/* Login page styles */
+
+/* Login background with modern gradient and blurred shapes */
+.login-body {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(135deg, #8ab9f1, #dfe7fd);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Decorative blobs for login background */
+.login-body::before,
+.login-body::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.login-body::before {
+  width: 400px;
+  height: 400px;
+  background: #a6c0fe;
+  top: -100px;
+  left: -100px;
+}
+
+.login-body::after {
+  width: 500px;
+  height: 500px;
+  background: #fbc2eb;
+  bottom: -150px;
+  right: -150px;
+}
+
+.login-container {
+  width: 90%;
+  max-width: 380px;
+  text-align: center;
+}
+
+.login-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.login-form .input-group {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.25);
+  color: #1a1a1a;
+  font-size: 0.9rem;
+}
+
+.login-form input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #6d5dfc, #c183fd);
+  color: #fff;
+}
+
+.primary-btn:hover {
+  box-shadow: 0 4px 12px rgba(109, 93, 252, 0.4);
+}
+
+.add-btn {
+  background: rgba(255, 255, 255, 0.35);
+  color: #333;
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+}
+
+.add-btn:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.small-btn {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.35);
+  color: #333;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.small-btn:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.full-width {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Calculator page styles */
+
+/* Main calculator background with layered gradients and blurred blobs */
+.calc-body {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eef2f5, #dff1fb);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.calc-body::before,
+.calc-body::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.calc-body::before {
+  width: 600px;
+  height: 600px;
+  background: #89f7fe;
+  top: -200px;
+  right: -150px;
+}
+
+.calc-body::after {
+  width: 700px;
+  height: 700px;
+  background: #ffb6c1;
+  bottom: -250px;
+  left: -200px;
+}
+
+.calc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.calc-header h1 {
+  font-size: 1.5rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.calc-main {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
+}
+
+.left-panel,
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.left-panel {
+  flex: 1 1 420px;
+}
+
+.right-panel {
+  flex: 1 1 360px;
+}
+
+.card h3 {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 45%;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.3);
+  color: #1a1a1a;
+  font-size: 0.85rem;
+}
+
+/* Range sliders */
+input[type='range'] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: background 0.3s;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #6d5dfc;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #6d5dfc;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.range-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 45%;
+  margin-bottom: 10px;
+}
+
+.range-group label {
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.range-group .value-display {
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+.form-group input:disabled {
+  color: #666;
+  opacity: 0.7;
+}
+
+.agent-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.agent-row .field {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Make slider inputs take full width */
+.agent-row .field input {
+  width: 100%;
+}
+
+.agent-row .field-name input {
+  width: 120px;
+}
+
+.remove-btn {
+  background: #ff6b6b;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background: #e63a3a;
+}
+
+/* Breakdown and summary */
+.breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.breakdown-row span:last-child {
+  font-weight: 600;
+}
+
+.agent-summary {
+  overflow-x: auto;
+}
+
+.agent-summary table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.agent-summary th,
+.agent-summary td {
+  text-align: left;
+  padding: 8px;
+}
+
+.agent-summary tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.agent-summary th {
+  background: rgba(255, 255, 255, 0.25);
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .calc-main {
+    flex-direction: column;
+  }
+  .left-panel,
+  .right-panel {
+    flex: 1 1 100%;
+  }
+}
